@@ -18,9 +18,21 @@ admin.initializeApp({
 
 
 
-app.post("/create",async(req,res)=>{
-    const data = req.body
-    await users.add(data)
+app.get("/create",async(req,res)=>{
+    var db = admin.database();
+    var ref = db.ref("users");
+    const usersRef = ref.child('data');
+    console.log("test")
+        usersRef.set({
+        anisawesome: {
+            date_of_birth: 'June 23, 1912',
+            full_name: 'Alan Turing'
+        },
+        gracehop: {
+            date_of_birth: 'December 9, 1906',
+            full_name: 'Grace Hopper'
+        }
+        });
     res.send("added successfully")
 })
 
