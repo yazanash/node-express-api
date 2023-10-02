@@ -1,14 +1,37 @@
 const express = require("express")
-
+const cors = require("cors")
 const app =express();
+app.use(express.json())
+app.use(cors())
+
+// const { initializeApp } = require('firebase-admin/app');
+var admin = require("firebase-admin");
+
+var serviceAccount = require("./platinum-8b28f-firebase-adminsdk-ln291-2b73cf7796.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://platinum-8b28f-default-rtdb.firebaseio.com"
+});
+// As an admin, the app has access to read and write all data, regardless of Security Rules
 
 
-app.get("/",(req,res)=>{
-    res.send("Hello World from express js")
+
+
+app.post("/create",async(req,res)=>{
+    const data = req.body
+    await users.add(data)
+    res.send("added successfully")
 })
 
 app.get("/hello",(req,res)=>{
-    res.send("Hello World from express js")
+    var db = admin.database();
+    var ref = db.ref("users");
+    ref.once("value", function(snapshot) {
+    console.log(snapshot.val());
+    
+});
+res.send("the value of users key is "+snapshot.val())
 })
 
 app.get("/home",(req,res)=>{
