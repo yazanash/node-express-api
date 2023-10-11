@@ -41,15 +41,15 @@ app.get("/hello",(req,res)=>{
     var ref = db.ref("users");
     ref.once("value", function(snapshot) {
     console.log(snapshot.val());
-    
+    res.json(snapshot.val())
 });
-res.send("the value of users key is "+snapshot.val())
+
 })
 
 app.get("/home",(req,res)=>{
     res.send("Welcome from home")
 })
  
-app.listen(8080,()=>{
-    console.log("app started on port 8080")
+app.listen(3000,()=>{
+    console.log("app started on port 3000")
 })
