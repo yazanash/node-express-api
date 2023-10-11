@@ -50,6 +50,4 @@ app.get("/home",(req,res)=>{
     res.send("Welcome from home")
 })
  
-app.listen(80,()=>{
-    console.log("app started on port 80")
-})
+app.listen(process.env.PORT || 3000)
