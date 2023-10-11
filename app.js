@@ -50,6 +50,6 @@ app.get("/home",(req,res)=>{
     res.send("Welcome from home")
 })
  
-app.listen(3000,()=>{
-    console.log("app started on prot 3000")
+app.listen(8080,()=>{
+    console.log("app started on port 8080")
 })
