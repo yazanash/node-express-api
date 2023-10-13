@@ -1,6 +1,7 @@
 const express = require("express")
 const cors = require("cors")
 const app =express();
+const os =require('os')
 app.use(express.json())
 app.use(cors())
 
@@ -53,4 +54,6 @@ app.get("/home",(req,res)=>{
 app.listen(process.env.PORT || 3000,function (err) { 
     if (err) console.log("Error in server setup")
     console.log("Server listening on Port 3000");
+    console.log(os.userInfo())
+    console.log(__dirname)
  })
